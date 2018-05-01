@@ -10,20 +10,17 @@ $client = Twitter::REST::Client.new do |config|
   config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
 end
 
-=begin
 # こっちでTLを読み込みます
 $stream_client = Twitter::Streaming::Client.new do |config|
-  config.consumer_key =        "CONSUMER_KEY"
-  config.consumer_secret =     "CONSUMER_SECRET"
-  config.access_token =        "ACCESS_TOKEN"
-  config.access_token_secret = "ACCESS_TOKEN_SECRET"
+  config.consumer_key =        ENV['CONSUMER_KEY']
+  config.consumer_secret =     ENV['CONSUMER_SECRET']
+  config.access_token =        ENV['ACCESS_TOKEN']
+  config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
 end
-=end
 
 # tweetのテストコードです
-$client.update("REST client working!!")
+#$client.update("REST client working!!")
 
-=begin
 # Tweetへのリプライに使います
 def reply(tweet)
   $client.update("@#{tweet.user.screen_name}\nおめでとうございます！", option = {:in_reply_to_status_id => tweet.id})
@@ -43,4 +40,3 @@ $stream_client.user do |tweet|
     end
   end
 end
-=end
